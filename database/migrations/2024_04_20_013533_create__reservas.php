@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('_reservas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('habitacion_id')->constrained('_habitaciones');
+            $table->unsignedBigInteger('habitacion_id');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->string('cliente_nombre');
             $table->string('cliente_email');
             $table->timestamps();
+
+            $table->foreign('habitacion_id')->references('id')->on('habitaciones');
         });
     }
 

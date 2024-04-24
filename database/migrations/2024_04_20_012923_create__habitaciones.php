@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('_habitaciones', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('hotel_id')->constrained('_hoteles');
+            $table->unsignedBigInteger('hotel_id');
             $table->string('numero');
-            $table->string('tipo');
-            $table->decimal('precio_por_noche', 8, 2);
+            $table->string('tipo', 10);
+            $table->decimal('precio_por_noche', 10, 2);
             $table->timestamps();
+       
+            $table->foreign('hotel_id')->references('id')->on('hoteles');
+     
         });
     }
 

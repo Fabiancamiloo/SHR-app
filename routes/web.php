@@ -30,7 +30,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
+//Rutas de hoteles
+Route::middleware('auth')->group(function () {
+    Route::get('/hoteles', [HotelController::class, 'index'])->name('hoteles.index');
+    Route::get('/hoteles/create', [HotelController::class, 'create'])->name('hoteles.create');
+    Route::post('/hoteles', [HotelController::class, 'store'])->name('hoteles.store');
+    Route::get('/hoteles/{hotel}/edit', [HotelController::class, 'edit'])->name('hoteles.edit');
+    Route::put('/hoteles/{hotel}', [HotelController::class, 'update'])->name('hoteles.update');
+    Route::delete('/hoteles/{hotel}', [HotelController::class, 'destroy'])->name('hoteles.destroy');
+    });
     
     
     //Rutas de habitaciones
@@ -43,7 +51,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('/habitaciones/{habitacion}', [HabitacionController::class, 'destroy'])->name('habitaciones.destroy');
         });
     
-         //Rutas de reservas
+        
+    //Rutas de reservas
     Route::middleware('auth')->group(function () {
         Route::get('/reservas', [ReservaController::class, 'index'])->name('reservas.index');
         Route::get('/reservas/create', [ReservaController::class, 'create'])->name('reservas.create');
@@ -52,7 +61,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/reservas/{reserva}', [ReservaController::class, 'update'])->name('reservas.update');
         Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
         });
-
+    
     
 
 require __DIR__.'/auth.php';
